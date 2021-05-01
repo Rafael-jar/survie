@@ -11,7 +11,7 @@ import java.util.UUID;
 public class PlaceHolder extends PlaceholderExpansion {
     @Override
     public @NotNull String getIdentifier() {
-        return null;
+        return "survie";
     }
 
     @Override

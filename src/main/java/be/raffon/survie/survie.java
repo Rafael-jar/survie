@@ -167,6 +167,7 @@ public class survie extends JavaPlugin implements Listener{
 
 			
 		}, 0L, 20L);
+		PlaceholderAPI.registerExpansion(new PlaceHolder(this));
 	}
 
 	@Override
