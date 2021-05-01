@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -86,7 +85,7 @@ public class survie extends JavaPlugin implements Listener{
 					+ "	username VARCHAR(100) PRIMARY KEY,\n"
 					+ "	emeralds INTEGER\n"
 					+ ");";
-		SQLManager.getInstance().update(sql);
+		sqlManager.getInstance().update(sql);
 
 
 		sql = "CREATE TABLE IF NOT EXISTS survie_histoire (\n"
@@ -94,22 +93,26 @@ public class survie extends JavaPlugin implements Listener{
 				+ "	chapter VARCHAR(100),\n"
 				+ "	language INTEGER\n"
 				+ ");";
-		SQLManager.getInstance().update(sql);
+		sqlManager.getInstance().update(sql);
 
-		bank = new TreeMap<>(new BankSorter());
+		AtomicReference<HashMap<UUID, Integer>> hashmap = new AtomicReference<HashMap<UUID, Integer>>();
 		SQLManager.getInstance().query("SELECT * FROM survie_banque;", rs -> {
 			try {
+				HashMap<UUID, Integer> hash = new HashMap<UUID, Integer>();
 				while(rs.next()) {
 					String username = rs.getString("username");
 					Integer emeralds = rs.getInt("emeralds");
-					bank.put(UUID.fromString(username), emeralds);
+					hash.put(UUID.fromString(username), emeralds);
 				}
+				hashmap.set(hash);
 			} catch (SQLException throwables) {
 				throwables.printStackTrace();
 			}
 		});
 
 		invs = new InventoryManager();
+
+		bank = hashmap.get();
 		
 		System.out.println("Survie succeffuly loaded !");
 		
@@ -128,6 +131,8 @@ public class survie extends JavaPlugin implements Listener{
 				for(Player player: Bukkit.getOnlinePlayers()) {
 					this.updateBoard(player);
 				}
+
+
 			}
 			private void updateBoard(Player player) {
 		    	
