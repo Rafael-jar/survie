@@ -1,4 +1,4 @@
-package be.raffon.survie;
+package be.raffon.survie.utils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
