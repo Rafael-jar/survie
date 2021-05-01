@@ -1,0 +1,27 @@
+name: Survie
+main: be.raffon.survie.survie
+version: 0.1
+description: Plugin survie gratuit fait par Rafael Silva Mendes
+author: Raffon
+api-version: 1.16
+commands:
+  survie:
+    description: Commande principale.
+    usage: /survie
+    permission: survie.config
+  clearbank:
+    description: Commande principale.
+    usage: /clearbank <player>
+    permission: survie.clearbank
+permissions:
+  survie.*:
+    description: Gives access to all survie commands
+    children:
+      survie.clearbank: true
+      survie.config: true
+  survie.clearbank:
+    description: Clearbank command
+    default: op
+  survie.config:
+    description: Config command
+    default: op
