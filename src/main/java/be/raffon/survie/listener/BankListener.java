@@ -40,8 +40,6 @@ public class BankListener implements Listener {
 
             Bank.get(pl.getUniqueId()).setEmeralds(0);
             sender.sendMessage(Survie.prefix + " You have successfuly cleared his bank.");
-
-            return true;
         }
         Player player = (Player) sender;
         if (args[0].equals("pnj")) {
