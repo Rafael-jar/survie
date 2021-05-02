@@ -170,22 +170,24 @@ public class BankListener implements Listener {
                             }
                         }
                     }
+
+                    Bank bank = Bank.get(event.getPlayer().getUniqueId());
+                    bank.setEmeralds(bank.getEmeralds() + 5);
+                    // 10 - (prevem % 10) > diff
+                    Integer diff = 5;
+                    if (10 - (bank.getEmeralds() % 10) <= diff) {
+                        if (diff > 10) {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + (int) Math.floor(diff / 10.0) + " 4");
+                            event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + (int) Math.floor(diff / 10.0) + " mystery boxs level 4 because of your participation :).");
+                            return;
+                        }
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " 1 4");
+                        event.getPlayer().sendMessage(Survie.prefix + " Well done you received a mystery box level 4 because of your participation :).");
+                    }
                 } else {
                     player.sendMessage("You do not have enough emeralds !");
                 }
-                Bank bank = Bank.get(event.getPlayer().getUniqueId());
-                bank.setEmeralds(bank.getEmeralds() + 5);
-                // 10 - (prevem % 10) > diff
-                Integer diff = 5;
-                if (10 - (bank.getEmeralds() % 10) <= diff) {
-                    if (diff > 10) {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + (int) Math.floor(diff / 10.0) + " 4");
-                        event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + (int) Math.floor(diff / 10.0) + " mystery boxs level 4 because of your participation :).");
-                        return;
-                    }
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " 1 4");
-                    event.getPlayer().sendMessage(Survie.prefix + " Well done you received a mystery box level 4 because of your participation :).");
-                }
+
 
 				/*if(em % 20 == 0 && em != 0) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give "+ event.getPlayer().getName() + " 1 5");
@@ -230,24 +232,26 @@ public class BankListener implements Listener {
                             }
                         }
                     }
+
+                    Bank bank = Bank.get(event.getPlayer().getUniqueId());
+                    bank.setEmeralds(bank.getEmeralds() + 32);
+                    // 10 - (prevem % 10) > diff
+                    Integer diff = 32;
+                    if (10 - (bank.getEmeralds() % 10) <= diff) {
+                        if (bank.getEmeralds() % 10 >= 8) {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0) + 1) + " 4");
+                            event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + ((int) Math.floor(diff / 10.0) + 1) + " mystery boxs level 4 because of your participation :).");
+                            return;
+                        } else {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0)) + " 4");
+                            event.getPlayer().sendMessage(Survie.prefix + " Well done you received " + ((int) Math.floor(diff / 10.0)) + " mystery boxs level 4 because of your participation :).");
+                            return;
+                        }
+                    }
                 } else {
                     player.sendMessage("You do not have enough emeralds !");
                 }
-                Bank bank = Bank.get(event.getPlayer().getUniqueId());
-                bank.setEmeralds(bank.getEmeralds() + 32);
-                // 10 - (prevem % 10) > diff
-                Integer diff = 32;
-                if (10 - (bank.getEmeralds() % 10) <= diff) {
-                    if (bank.getEmeralds() % 10 >= 8) {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0) + 1) + " 4");
-                        event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + ((int) Math.floor(diff / 10.0) + 1) + " mystery boxs level 4 because of your participation :).");
-                        return;
-                    } else {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0)) + " 4");
-                        event.getPlayer().sendMessage(Survie.prefix + " Well done you received " + ((int) Math.floor(diff / 10.0)) + " mystery boxs level 4 because of your participation :).");
-                        return;
-                    }
-                }
+
             });
 
             ItemStack emerald64 = new ItemStack(Material.EMERALD, 1);
@@ -285,24 +289,26 @@ public class BankListener implements Listener {
                             }
                         }
                     }
+
+                    Bank bank = Bank.get(event.getPlayer().getUniqueId());
+                    bank.setEmeralds(bank.getEmeralds() + 64);
+                    // 10 - (prevem % 10) > diff
+                    Integer diff = 64;
+                    if (10 - (bank.getEmeralds() % 10) <= diff) {
+                        if (bank.getEmeralds() % 10 >= 6) {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0) + 1) + " 4");
+                            event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + ((int) Math.floor(diff / 10.0) + 1) + " mystery boxs level 4 because of your participation :).");
+                            return;
+                        } else {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0)) + " 4");
+                            event.getPlayer().sendMessage(Survie.prefix + " Well done you received " + ((int) Math.floor(diff / 10.0)) + " mystery boxs level 4 because of your participation :).");
+                            return;
+                        }
+                    }
                 } else {
                     player.sendMessage("You do not have enough emeralds !");
                 }
-                Bank bank = Bank.get(event.getPlayer().getUniqueId());
-                bank.setEmeralds(bank.getEmeralds() + 64);
-                // 10 - (prevem % 10) > diff
-                Integer diff = 64;
-                if (10 - (bank.getEmeralds() % 10) <= diff) {
-                    if (bank.getEmeralds() % 10 >= 6) {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0) + 1) + " 4");
-                        event.getPlayer().sendMessage(Survie.prefix + " Well done you recieved " + ((int) Math.floor(diff / 10.0) + 1) + " mystery boxs level 4 because of your participation :).");
-                        return;
-                    } else {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give " + event.getPlayer().getName() + " " + ((int) Math.floor(diff / 10.0)) + " 4");
-                        event.getPlayer().sendMessage(Survie.prefix + " Well done you received " + ((int) Math.floor(diff / 10.0)) + " mystery boxs level 4 because of your participation :).");
-                        return;
-                    }
-                }
+
             });
 
             page.addItem(paneitem, 0);
