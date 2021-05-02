@@ -48,7 +48,6 @@ public class Survie extends JavaPlugin {
 		    	}
 
 				Bank bank = Bank.get(player.getUniqueId());
-				bank.setEmeralds(0);
 
 				int emeralds = 0;
 			    for (ItemStack item : player.getInventory().getContents()) {
@@ -58,6 +57,8 @@ public class Survie extends JavaPlugin {
 				    	}
 			    	}
 			    }
+
+
 		        fb.updateLines(
 		                "",
 		                ChatColor.YELLOW + "Bank: " + ChatColor.WHITE + bank.getEmeralds(),
