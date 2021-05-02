@@ -58,7 +58,15 @@ public class SQLManager {
     }
 
     public void createTables() throws SQLException {
-        //TODO CREER LES DB A LA MAIN
+        update("CREATE TABLE IF NOT EXISTS survie_banque (\n"
+                + "	username VARCHAR(100) PRIMARY KEY,\n"
+                + "	emeralds INTEGER\n"
+                + ");");
+        update("CREATE TABLE IF NOT EXISTS survie_histoire (\n"
+                + "	username VARCHAR(100) PRIMARY KEY,\n"
+                + "	chapter VARCHAR(100),\n"
+                + "	language INTEGER\n"
+                + ");");
     }
 
     public void update(final String qry) {

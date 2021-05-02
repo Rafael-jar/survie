@@ -2,9 +2,6 @@ package be.raffon.survie.listener;
 
 import be.raffon.survie.Bank;
 import be.raffon.survie.Survie;
-import be.raffon.survie.inventories.CInventory;
-import be.raffon.survie.inventories.CItem;
-import be.raffon.survie.inventories.Page;
 import be.raffon.survie.scoreboards.FastBoard;
 import be.raffon.survie.utils.SQLManager;
 import org.bukkit.*;
@@ -13,19 +10,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicReference;
@@ -115,9 +109,8 @@ public class BankListener implements Listener {
         if (!(event.getRightClicked() instanceof Villager)) return;
 
         Entity entity = event.getRightClicked();
-        Location loc = entity.getLocation();
         FileConfiguration config = Survie.INSTANCE.getConfig();
-        if (loc.getBlockX() == config.getInt("bank.x") && loc.getBlockY() == config.getInt("bank.y") && loc.getBlockZ() == config.getInt("bank.z") && loc.getWorld().getName().equals(config.getString("bank.world"))) {
+        if (entity.getType().equals(EntityType.VILLAGER) && entity.getName().equalsIgnoreCase("Bank")) {
             if (getStaff(event.getPlayer())) {
                 event.getPlayer().sendMessage(Survie.prefix + " You can't use this pnj in staff mode !");
                 event.setCancelled(true);
@@ -125,7 +118,9 @@ public class BankListener implements Listener {
             }
             event.setCancelled(true);
 
-            CInventory cinv = new CInventory();
+            Bank.getDepositMenu().open(event.getPlayer());
+
+            /*CInventory cinv = new CInventory();
 
             Page page = new Page(2, ChatColor.BLUE + "BANK", 1, true);
 
@@ -189,10 +184,10 @@ public class BankListener implements Listener {
                 }
 
 
-				/*if(em % 20 == 0 && em != 0) {
+				if(em % 20 == 0 && em != 0) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gmysterybox give "+ event.getPlayer().getName() + " 1 5");
 					event.getPlayer().sendMessage(this.Survie.prefix + " Well done you recieved a mystery box level 4 because of your participation :).");
-				}*/
+				}
 
             });
 
@@ -335,7 +330,7 @@ public class BankListener implements Listener {
 
             cinv.addPage(page);
             cinv.display(event.getPlayer());
-            Survie.invs.registerInventory(event.getPlayer().getUniqueId(), cinv);
+            Survie.invs.registerInventory(event.getPlayer().getUniqueId(), cinv);*/
 
         }
     }
@@ -430,26 +425,6 @@ public class BankListener implements Listener {
 		}*/
     }
 
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        Player player = (Player) event.getWhoClicked();
-        Inventory inv = event.getClickedInventory();
-        ItemStack clicked = event.getCurrentItem();
-        if (clicked == null) {
-            return;
-        }
-        CInventory cinv = Survie.invs.getInventory(player.getUniqueId());
-        if (cinv == null) {
-            return;
-        }
-        if (event.getClick() == ClickType.LEFT) {
-            cinv.clickItem(event.getCurrentItem(), event.getSlot(), inv, player, event, Survie.invs, false);
-        } else {
-            cinv.clickItem(event.getCurrentItem(), event.getSlot(), inv, player, event, Survie.invs, true);
-        }
-
-    }
-
 
     public Boolean getStaff(Player pl) {
         AtomicReference<Boolean> bool = new AtomicReference<Boolean>();
@@ -465,7 +440,6 @@ public class BankListener implements Listener {
                     }
                 }
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             bool.set(false);
