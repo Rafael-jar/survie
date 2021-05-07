@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="survie:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/survie_jar</output-path>
+    <output-path>$PROJECT_DIR$/../../server/plugins</output-path>
     <root id="archive" name="survie.jar">
       <element id="module-output" name="survie" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" path-in-jar="/" />

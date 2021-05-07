@@ -40,7 +40,7 @@
         <dependency>
             <groupId>Plugin</groupId>
             <artifactId>CInventory</artifactId>
-            <version>2.3-SNAPSHOT</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>

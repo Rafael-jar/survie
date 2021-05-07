@@ -57,6 +57,8 @@ public class Survie extends JavaPlugin {
 				    	}
 			    	}
 			    }
+
+
 		        fb.updateLines(
 		                "",
 		                ChatColor.YELLOW + "Bank: " + ChatColor.WHITE + bank.getEmeralds(),
