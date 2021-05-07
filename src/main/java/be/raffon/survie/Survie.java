@@ -48,7 +48,6 @@ public class Survie extends JavaPlugin {
 		    	}
 
 				Bank bank = Bank.get(player.getUniqueId());
-				bank.setEmeralds(0);
 
 				int emeralds = 0;
 			    for (ItemStack item : player.getInventory().getContents()) {
@@ -71,10 +70,4 @@ public class Survie extends JavaPlugin {
 			new PlaceHolder().register();
 		}
 	}
-
-	@Override
-	public void onDisable() {
-		Bank.save();
-	}
-
 }

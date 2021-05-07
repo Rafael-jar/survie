@@ -81,10 +81,6 @@ public class Bank {
         }
     }
 
-    public static void save() {
-        banks.forEach(bank -> SQLManager.getInstance().update("INSERT INTO survie_banque (username, emeralds) VALUES ('" + bank.getUuid() + "', " + bank.getEmeralds() + ") ON DUPLICATE KEY UPDATE emeralds="+bank.getEmeralds()+";"));
-    }
-
     public static List<Bank> getBanks() {
         return banks;
     }
@@ -128,5 +124,9 @@ public class Bank {
 
     public static CInventory getDepositMenu() {
         return depositMenu;
+    }
+
+    public void sendToDB() {
+        SQLManager.getInstance().update("INSERT INTO survie_banque (username, emeralds) VALUES ('" + getUuid() + "', " + getEmeralds() + ") ON DUPLICATE KEY UPDATE emeralds="+ getEmeralds()+";");
     }
 }
